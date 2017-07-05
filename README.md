@@ -5,7 +5,7 @@ admin) and guest. Admin (and hotel staff) has the desktop application using whic
 whereas guests have a web interface through which they can book a room, check the availability etc. 
 In addition, it has room availability functionality published as RESTful Web Service, which anyone can implement and use.
 
-Web Client is made in JSF framework and Desktop Client is made in Swing. 
+Web Client is made in JSF framework, Desktop Client is made in Swing and Web Service client is made in JSP. 
 
 ## Skills And Tools
 
