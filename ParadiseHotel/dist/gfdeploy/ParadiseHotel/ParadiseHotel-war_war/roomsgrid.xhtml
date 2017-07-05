@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:head>
+        <title>Hotel Paradise</title>
+        <h:outputStylesheet name="resources/css/jsfcrud.css"/>
+        
+    </h:head>
+    <h:body>
+
+            <p:layout fullPage="true">
+                <ui:composition template="mainlayout3.xhtml">    
+                    
+                <ui:insert name="header" >
+                    <ui:include src="header3.xhtml" />
+                </ui:insert>
+                                
+                <ui:insert name="footer" >
+                    <ui:include src="footer.xhtml" />
+                </ui:insert>
+                    
+
+                <ui:define name="headercontent">    
+                <f:facet name="header">
+                    <center>
+                    <div class="menu">   
+                    <p:link value="Home" class="item" outcome="adminhome" />
+                    <p:link value="Rooms" class="item" outcome="roomsgrid" />
+                    </div>
+                    </center>
+                </f:facet>   
+                </ui:define>
+                    
+                <ui:define name="content"> 
+                <h:panelGrid style="width: 100%" columns="2" columnClasses="detail">
+                <p:outputPanel>
+                    <p:growl id="messages" autoUpdate="true" life="3000" />
+                    
+                    <p:fieldset legend="Room Form">
+                    <h:panelGrid columns="1">
+                    <h:form id="rmfrm">
+                        <table cellpadding="2" cellspacing="2">
+                        <tr>
+                        <td><p:outputLabel for="roomtype" value="RoomType:" /></td>
+                        <td><p:selectOneMenu id="roomtype" value="#{adminBean.roomtypes.roomTypeId}" style="width:200px" required="true">
+                                <f:selectItem itemLabel="Select Room Type" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{adminBean.adminSessionBean.allRoomTypes()}" var="entry"
+                                               itemValue="#{entry.roomTypeId}" itemLabel="#{entry.roomtype} (#{entry.price})" />
+                            </p:selectOneMenu></td>    
+                        </tr>
+                            
+                        <tr>
+                        <td><p:outputLabel for="roomnumber" value="RoomNumber: " /></td>
+                        <td><p:inputText id="roomnumber" value="#{adminBean.rooms.roomnumber}" required="true" label="Roomnumber">
+                            <f:validateLength minimum="4" maximum="4" />
+                        </p:inputText>
+                        <p:watermark for="roomnumber" value="Room Number" /></td>
+                        </tr>
+                        
+                        <tr>
+                        <td><p:outputLabel for="floor" value="Floor: " /></td>
+                        <td><p:inputText id="floor" value="#{adminBean.rooms.floor}" required="true" label="Floor">
+                            <f:validateLength minimum="1" maximum="2" />
+                        </p:inputText>
+                            <p:watermark for="floor" value="Floor" /></td>
+                        </tr>
+                        
+                        <tr>
+                        <td><p:outputLabel for="roomstatus" value="RoomStatus: " /></td>
+                        <td><p:selectOneMenu id="roomstatus" value="#{adminBean.roomstatus.statusId}" style="width:200px" required="true">
+                                <f:selectItem itemLabel="Select Room Status" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{adminBean.adminSessionBean.allRoomStatus()}" var="entry"
+                                               itemValue="#{entry.statusId}" itemLabel="#{entry.status}" />
+                            </p:selectOneMenu></td>    
+                        </tr>
+                            
+                        <tr>
+                        <td><p:commandButton value="Save" actionListener="#{adminBean.roomAdd()}" ajax="false" /></td>
+                        <td><p:commandButton value="Reset" actionListener="#{adminBean.reset()}" ajax="false" /></td>
+                        </tr>
+                        </table>
+                        
+                    </h:form> 
+                    </h:panelGrid>    
+                    </p:fieldset>
+                </p:outputPanel>
+                
+                    
+                <p:outputPanel>    
+                <h:form id="fr">
+                    <p:growl id="messages" showDetail="true"/>
+                    <p:dataTable id="tbl" var="res" value="#{adminBean.adminSessionBean.allRooms()}"
+             paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {NextPageLink}"
+             paginator="true" rows="5" sortBy="#{adminBean.rooms.roomid}">
+                    <f:facet name="header">
+                        Room List
+                    </f:facet> 
+                        
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Room Number" />
+                        </f:facet>
+                        <h:outputText value="#{res[0]}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Room Type"/>
+                        </f:facet>
+                        <h:outputText value="#{res[1]}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Floor" />
+                        </f:facet>
+                        <h:outputText value="#{res[2]}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Status" />
+                        </f:facet>
+                        <h:outputText value="#{res[3]}" />
+                    </p:column>
+                        
+                    <p:column>
+                        <p:commandButton value="Edit" actionListener="#{adminBean.edit(res[4])}" ajax="false"/> 
+                    </p:column>
+                </p:dataTable>
+                </h:form>
+                </p:outputPanel>    
+                </h:panelGrid>    
+                    
+                </ui:define>
+                       
+                </ui:composition>   
+            </p:layout>
+            
+        </h:body>
+  
+</html>
+

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Hotel Paradise</title>
+            </f:facet>
+            <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+        </h:head>
+
+       <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="160" resizable="true" closable="true" collapsible="true">
+                    <header>
+                    <div id="logo">
+                        <img src="resources/images/logo.png" height="100" width="100"/>
+                        <span>Hotel Paradise</span>
+                        <div style="text-align: right; font-size: 14px">
+                            <p:link value="Customer Login" class="item" outcome="login" />
+                            <p:link value="SignUp" class="item" outcome="signup" />
+                        </div>
+                    </div>
+                    </header>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="70" closable="true" collapsible="true">
+                    <footer>
+                    <center>Copyright © Paradise Hotel Services 2017</center>
+                    </footer>
+                </p:layoutUnit>
+        
+                <p:layoutUnit position="center">
+                <f:facet name="header">
+                    <center>
+                    <div class="menu">   
+                    <p:link value="Home" class="item" outcome="index" />
+                    <p:link value="Room Booking" class="item" outcome="roombooking" />
+                    <p:link value="About" class="item" outcome="index" />
+                    <p:link value="Contact" class="item" outcome="index" />
+                    </div>
+                    </center>
+                </f:facet>    
+                        
+                <h:form>
+                <p:growl id="growl" sticky="false" showDetail="false" life="3000" />    
+                <center>    
+                <h:panelGrid columns="2" cellpadding="6">
+                    
+                    <f:facet name="header">
+                        <h:outputLabel>Customer Signup</h:outputLabel>
+                    </f:facet>
+                    
+                    <h:outputLabel for="firstname" value="Firstname:" />
+                    <p:inputText id="firstname" value="#{customerBean.customers.firstname}" required="true" label="firstname" />
+
+                    <h:outputLabel for="lastname" value="Lastname:" />
+                    <p:inputText id="lastname" value="#{customerBean.customers.lastname}" required="true" label="lastname" />
+
+                    <h:outputLabel for="email" value="Email:" />
+                    <p:inputText id="email" value="#{customerBean.customers.email}" required="true" label="email" />
+
+                    <h:outputLabel for="phone" value="Phone:" />
+                    <p:inputText id="phone" value="#{customerBean.customers.phone}" required="true" label="phone" />
+
+                    <h:outputLabel for="username" value="Username:" />
+                    <p:inputText id="username" value="#{customerBean.customers.username}" required="true" label="username" />
+
+                    <h:outputLabel for="password" value="Password:" />
+                    <p:password id="password" value="#{customerBean.customers.password}" required="true" label="password" />
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Sign up" update="growl" action="#{customerBean.addCustomer()}" />
+                    </f:facet>
+                    
+                </h:panelGrid>
+                </center>    
+                </h:form>    
+
+                
+                </p:layoutUnit>
+                    
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <ui:composition>
+
+            <p:layoutUnit position="north" size="160" resizable="true" closable="true" collapsible="true">
+            <header>
+                <div id="logo">
+                    <img src="resources/images/logo.png" height="100" width="100"/>
+                    <span>Hotel Paradise</span>
+                    <div style="text-align: right; font-size: 14px">
+                        <p:link value="Admin Login" class="item" outcome="adminlogin" />
+                        <p:link value="Customer Login" class="item" outcome="login" />
+                        <p:link value="SignUp" class="item" outcome="signup" />
+                    </div>
+                </div>
+            </header>
+            </p:layoutUnit>    
+
+	</ui:composition>
+    </body>
+</html>
